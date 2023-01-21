@@ -1,4 +1,4 @@
-package com.sportradar.valerydauzhuk.betesttask.models;
+package com.sportradar.valerydauzhuk.betesttask.models.mainjsonparse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
