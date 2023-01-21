@@ -15,7 +15,7 @@ public class ConsoleOutput implements CommandLineRunner {
     @Override
     public void run(String... args){
         System.out.println(System.lineSeparator() + "\u001B[32m" + "Most Probable 10 Matches Results: " + "\u001B[0m" + System.lineSeparator());
-        mostProbableEventsResults.matchResults().forEach(System.out::println);
+        mostProbableEventsResults.matchResults(10).forEach(System.out::println);
 
     }
 }

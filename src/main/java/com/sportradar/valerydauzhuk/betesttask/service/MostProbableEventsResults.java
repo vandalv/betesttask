@@ -14,20 +14,28 @@ public class MostProbableEventsResults {
     private MostProbableEventsResults() {
         this.sportEvents = JsonToSportEventsParser.parseJsonToSportEventsObject();
     }
-    public List<Result> matchResults(){
+    public List<Result> matchResults(int recordsDisplayLimit){
 
-        List<Result> results = new ArrayList<>();
+        if(recordsDisplayLimit <= 0 || recordsDisplayLimit > overallEventsNumber()){
+            recordsDisplayLimit = overallEventsNumber();
+        }
 
-            sportEvents.getEvents()
+        List<Result> results = new ArrayList<>(recordsDisplayLimit);
+
+        sportEvents.getEvents()
                 .stream()
-                .limit(10)
+                .limit(recordsDisplayLimit)
                 .forEach(e -> results.add(new Result(e.getStartDate().toString(),new StringBuilder().append(e.getCompetitors().get(0).getName())
                         .append("(").append(e.getCompetitors().get(0).getCountry()).append(")").append(" vs. ")
                         .append(e.getCompetitors().get(1).getName()).append("(").append(e.getCompetitors().get(1).getCountry())
                         .append(")").toString(),
                         e.getVenue() == null ? "No Information Provided" : e.getVenue().getName(),
                         CompareProbabilities.compareHomeTeamAwayTeamDrawProbabilities(e.getProbabilityHomeTeamWinner(),
-                                                            e.getProbabilityAwayTeamWinner(), e.getProbabilityDraw()))));
-            return results;
+                                e.getProbabilityAwayTeamWinner(), e.getProbabilityDraw()))));
+        return results;
+    }
+
+    private int overallEventsNumber(){
+        return sportEvents.getEvents().size();
     }
 }
