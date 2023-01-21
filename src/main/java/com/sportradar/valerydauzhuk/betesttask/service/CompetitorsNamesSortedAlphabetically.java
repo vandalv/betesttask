@@ -39,6 +39,7 @@ public class CompetitorsNamesSortedAlphabetically {
                 });
         if(competitorsNames.isEmpty()){
             competitorsNames.add("No Results Found");
+
         }
     }
 }
