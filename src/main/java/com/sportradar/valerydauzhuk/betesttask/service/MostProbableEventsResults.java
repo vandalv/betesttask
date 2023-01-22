@@ -11,7 +11,7 @@ import java.util.List;
 public class MostProbableEventsResults {
     SportEvents sportEvents;
 
-    private MostProbableEventsResults() {
+    MostProbableEventsResults() {
         this.sportEvents = JsonToSportEventsParser.parseJsonToSportEventsObject();
     }
     public List<Result> matchResults(int recordsDisplayLimit){
