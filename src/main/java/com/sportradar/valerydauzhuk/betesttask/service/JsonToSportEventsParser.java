@@ -3,7 +3,6 @@ package com.sportradar.valerydauzhuk.betesttask.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sportradar.valerydauzhuk.betesttask.models.mainjsonparse.SportEvents;
 
-import java.io.File;
 import java.io.IOException;
 
 public final class JsonToSportEventsParser {
@@ -15,7 +14,7 @@ public final class JsonToSportEventsParser {
     public static SportEvents parseJsonToSportEventsObject() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(new File("data/BE_data.json"), SportEvents.class);
+            return objectMapper.readValue(JsonToSportEventsParser.class.getResourceAsStream("/BE_data.json"), SportEvents.class);
         }
         catch (IOException e) {
             e.printStackTrace();
